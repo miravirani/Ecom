@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../Redux/productsSlice";
+import { fetchProducts, toggleLike } from "../../Redux/productsSlice";
 import { useNavigate } from "react-router-dom";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const Products = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { items: products, status, error } = useSelector((state) => state.products);
+  const { items: products, status, error, liked } = useSelector((state) => state.products);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("default");
 
@@ -59,7 +60,14 @@ const Products = () => {
                   key={product.id}
                   className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col w-full justify-between h-full relative"
                 >
-                  <button className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl">♡</button>
+                  <button
+                    className={`absolute top-4 right-4 text-2xl transition ${
+                      liked.includes(product.id) ? "text-red-500" : "text-gray-400"
+                    }`}
+                    onClick={() => dispatch(toggleLike(product.id))}
+                  >
+                    {liked.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
+                  </button>
                   <img
                     src={product.image}
                     alt={product.title}

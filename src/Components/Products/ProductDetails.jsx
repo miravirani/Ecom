@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { FaArrowLeft } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductById, toggleLike } from "../../Redux/productsSlice";
+import { FaArrowLeft, FaHeart, FaRegHeart } from "react-icons/fa";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { items: products, status } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const { single: product, singleStatus: status, singleError: error } = useSelector((state) => state.products);
+  const liked = useSelector((state) => state.products.liked);
+  const isLiked = product && liked.includes(product.id);
 
-  // Find the product by id (id from params is string, product.id is number)
-  const product = products.find((p) => p.id === Number(id));
+  useEffect(() => {
+    dispatch(fetchProductById(id));
+  }, [dispatch, id]);
 
   if (status === "loading") return <div className="text-center py-10">Loading...</div>;
+  if (status === "failed") return <div className="text-center text-red-500 py-10">{error}</div>;
   if (!product) return <div className="text-center py-10">Product not found.</div>;
 
   return (
@@ -32,7 +38,12 @@ const ProductDetails = () => {
             />
           </div>
           <div className="flex-1 w-full max-w-xl relative">
-            <button className="absolute top-0 right-0 text-gray-400 hover:text-red-500 text-2xl">♡</button>
+            <button
+              className={`absolute top-0 right-0 text-2xl transition ${isLiked ? "text-red-500" : "text-gray-400"}`}
+              onClick={() => dispatch(toggleLike(product.id))}
+            >
+              {isLiked ? <FaHeart /> : <FaRegHeart />}
+            </button>
             <span className="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-3 py-1 rounded mb-2">
               {product.category}
             </span>
@@ -53,4 +64,5 @@ const ProductDetails = () => {
     </main>
   );
 };
+
 export default ProductDetails; 
