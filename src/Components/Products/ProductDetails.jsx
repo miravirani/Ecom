@@ -52,5 +52,4 @@ const ProductDetails = () => {
     </main>
   );
 };
-
 export default ProductDetails; 
