@@ -26,14 +26,14 @@ const Products = () => {
 
   return (
     <main className="py-8 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto container max-w-[1370px]">
         <h1 className="text-4xl font-bold mb-2">All Products</h1>
         <p className="text-gray-600 mb-6">Browse our collection of quality products</p>
         <div className="flex flex-col md:flex-row gap-4 mb-6 items-center">
           <input
             type="text"
             placeholder="Search products..."
-            className="w-full md:w-1/2 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none"
+            className="w-full md:w-1/ border border-gray-300 rounded-lg px-4 py-2 focus:outline-none"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -45,7 +45,7 @@ const Products = () => {
             <option value="default">Default</option>
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>
-            <option value="rating">Rating</option>
+            {/* <option value="rating">Rating</option> */}
           </select>
         </div>
         {status === "loading" && <div className="text-center py-10">Loading...</div>}
@@ -53,11 +53,11 @@ const Products = () => {
         {status === "succeeded" && (
           <>
             <p className="mb-4 text-gray-500">{filteredProducts.length} products found</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {filteredProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-between h-full relative"
+                  className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col w-full justify-between h-full relative"
                 >
                   <button className="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl">♡</button>
                   <img

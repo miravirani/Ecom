@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { FaArrowLeft } from "react-icons/fa";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -15,14 +16,14 @@ const ProductDetails = () => {
 
   return (
     <main className="py-8 px-2 md:px-4">
-      <div className="max-w-5xl mx-auto">
+      <div className="mx-auto container max-w-[1370px]">
         <button
-          className="mb-6 flex items-center text-[#2563eb] hover:underline"
+          className="mb-6 flex items-center text-gray-600 hover:bg-gray-200 px-4 py-2 rounded-lg transition"
           onClick={() => navigate(-1)}
         >
-          <span className="mr-2 text-xl">&#8592;</span> Back to Products
+          <FaArrowLeft className="mr-2 text-gray-600" /> Back to Products
         </button>
-        <div className="bg-white rounded-xl shadow p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center md:items-start">
+        <div className="bg-white rounded-xl border border-gray-200 p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center md:items-start">
           <div className="flex-1 flex justify-center items-center">
             <img
               src={product.image}
