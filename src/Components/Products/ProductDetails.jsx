@@ -39,7 +39,7 @@ const ProductDetails = () => {
           </div>
           <div className="flex-1 w-full max-w-xl relative">
             <button
-              className={`absolute top-0 right-0 text-2xl transition ${isLiked ? "text-red-500" : "text-gray-400"}`}
+              className={`absolute top-0 right-0 text-xl transition hover:bg-gray-100 px-3 py-2 rounded-lg transition ${isLiked ? "text-red-500" : "text-gray-400"}`}
               onClick={() => dispatch(toggleLike(product.id))}
             >
               {isLiked ? <FaHeart /> : <FaRegHeart />}

@@ -34,12 +34,12 @@ const Products = () => {
           <input
             type="text"
             placeholder="Search products..."
-            className="w-full md:w-1/ border border-gray-300 rounded-lg px-4 py-2 focus:outline-none"
+            className="w-full md:w-4/5 border border-gray-300 rounded-lg px-4 h-12 text-base focus:outline-none"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <select
-            className="border border-gray-300 rounded-lg px-4 py-2"
+            className="w-full md:w-1/5 border border-gray-300 rounded-lg px-4 h-12 text-base focus:outline-none"
             value={sort}
             onChange={(e) => setSort(e.target.value)}
           >
@@ -61,9 +61,8 @@ const Products = () => {
                   className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col w-full justify-between h-full relative"
                 >
                   <button
-                    className={`absolute top-4 right-4 text-2xl transition ${
-                      liked.includes(product.id) ? "text-red-500" : "text-gray-400"
-                    }`}
+                    className={`absolute top-4 right-4 text-xl transition hover:bg-gray-100 px-3 py-2 rounded-lg transition ${liked.includes(product.id) ? "text-red-500" : "text-gray-400"
+                      }`}
                     onClick={() => dispatch(toggleLike(product.id))}
                   >
                     {liked.includes(product.id) ? <FaHeart /> : <FaRegHeart />}
