@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductById, toggleLike } from "../../Redux/productsSlice";
+import { fetchProductById, toggleLike } from "../../Redux/Slice/productsSlice";
 import { FaArrowLeft, FaHeart, FaRegHeart } from "react-icons/fa";
 
 const ProductDetails = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, toggleLike } from "../../Redux/productsSlice";
+import { fetchProducts, toggleLike } from "../../Redux/Slice/productsSlice";
 import { useNavigate } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
